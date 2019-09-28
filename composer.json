@@ -1,5 +1,5 @@
 {
-    "name": "intuxicated/persian-tools-bundle",
+    "name": "MHZarei/persian-tools-bundle",
     "type": "library",
     "description": "Persian Tools for Symfony 2",
     "keywords": ["pdate", "persian number", "persian", "tools", "persian tools"],
@@ -12,7 +12,7 @@
         },
         {
             "name": "Contributors",
-            "homepage": "https://github.com/intuxicated/sfPersianToolsBundle/contributors"
+            "homepage": "https://github.com/MHZarei/sfPersianToolsBundle/contributors"
         }
     ],
     "require": {
@@ -22,10 +22,10 @@
     },
     "autoload": {
         "psr-0": {
-            "Intuxicated\\PersianToolsBundle\\": ""
+            "MHZarei\\PersianToolsBundle\\": ""
         }
     },
-    "target-dir": "Intuxicated/PersianToolsBundle",
+    "target-dir": "MHZarei/PersianToolsBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "0.1-dev"
