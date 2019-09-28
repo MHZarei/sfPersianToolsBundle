@@ -1,5 +1,5 @@
 {
-    "name": "MHZarei/persian-tools-bundle",
+    "name": "mhzarei/persian-tools-bundle",
     "type": "library",
     "description": "Persian Tools for Symfony 2",
     "keywords": ["pdate", "persian number", "persian", "tools", "persian tools"],
@@ -9,6 +9,10 @@
         {
             "name": "Mohammad Niknam",
             "email": "hidensoft@gmail.com"
+        },
+        {
+            "name": "MH Zarei",
+            "email": "mhz.zarei@gmail.com"
         },
         {
             "name": "Contributors",
@@ -22,10 +26,10 @@
     },
     "autoload": {
         "psr-0": {
-            "MHZarei\\PersianToolsBundle\\": ""
+            "mhzarei\\PersianToolsBundle\\": ""
         }
     },
-    "target-dir": "MHZarei/PersianToolsBundle",
+    "target-dir": "mhzarei/PersianToolsBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "0.1-dev"
