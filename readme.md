@@ -18,7 +18,7 @@ Add PersianToolsBundle in your composer.json
 ```json
 {
     "require": {
-        "intuxicated/persian-tools-bundle": "dev-master"
+        "mhzarei/persian-tools-bundle": "dev-master"
     }
 }
 ```
@@ -26,7 +26,7 @@ Add PersianToolsBundle in your composer.json
 Now tell composer to download the bundle by running the command
 
 ```bash
-$ php composer.phar update intuxicated/persian-tools-bundle
+$ php composer.phar update mhzarei/persian-tools-bundle
 ```
 
 ### Enable the bundle ###
