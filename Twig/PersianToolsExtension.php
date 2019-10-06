@@ -23,8 +23,11 @@
 namespace Intuxicated\PersianToolsBundle\Twig;
 
 use Intuxicated\PersianToolsBundle\Lib\PersianTools;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 
-class PersianToolsExtension extends \Twig_Extension
+class PersianToolsExtension extends AbstractExtension
 {
     /**
      * @var \Intuxicated\PersianToolsBundle\Lib\PersianTools
@@ -39,9 +42,11 @@ class PersianToolsExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            'pdate' =>  new \Twig_Filter_Method($this, 'pdateFilter'),
-            'pnumber'=> new \Twig_Filter_Method($this,'pnumberFilter'),
-            'pletter'=> new \Twig_Filter_Method($this, 'pletterFilter'),
+            new TwigFilter('pdate', [$this, 'pdateFilter']),
+            new TwigFilter('pnumber', [$this,'pnumberFilter']),
+            new TwigFilter('pletter', [$this, 'pletterFilter']),
+            new TwigFilter('pduration', [$this, 'pdurationFilter']),
+            new TwigFilter('pdurationText', [$this, 'pdurationTextFilter']),
         );
     }
 
@@ -51,15 +56,15 @@ class PersianToolsExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'pdate' => new \Twig_Function_Method($this, 'pdate_fnc', array('is_safe' => array('html'))),
-            'pstrftime' => new \Twig_Function_Method($this,'pstrftime_fnc',array('is_safe'=>array('html'))),
-            'DayOfYear' => new \Twig_Function_Method($this,'DayOfYear_fnc',array('is_safe'=>array('html'))),
-            'isKabise' => new \Twig_Function_Method($this,'isKabise_fnc',array('is_safe'=>array('html'))),
-            'pmktime' => new \Twig_Function_Method($this,'pmktime_fnc',array('is_safe'=>array('html'))),
-            'pcheckdate' => new \Twig_Function_Method($this,'pcheckdate_fnc',array('is_safe'=>array('html'))),
-            'pgetdate' => new \Twig_Function_Method($this,'pgetdate_fnc',array('is_safe'=>array('html'))),
-            'pnumber' => new \Twig_Function_Method($this,'pnumber_fnc',array('is_safe'=>array('html'))),
-            'pletter' => new \Twig_Function_Method($this,'pletter_fnc',array('is_safe'=>array('html'))),
+            new TwigFunction('pdate', [$this, 'pdate_fnc', array('is_safe' => array('html'))]),
+            new TwigFunction('pstrftime', [$this,'pstrftime_fnc',array('is_safe'=>array('html'))]),
+            new TwigFunction('DayOfYear' ,[$this,'DayOfYear_fnc',array('is_safe'=>array('html'))]),
+            new TwigFunction('isKabise' ,[$this,'isKabise_fnc',array('is_safe'=>array('html'))]),
+            new TwigFunction('pmktime' ,[$this,'pmktime_fnc',array('is_safe'=>array('html'))]),
+            new TwigFunction('pcheckdate' ,[$this,'pcheckdate_fnc',array('is_safe'=>array('html'))]),
+            new TwigFunction('pgetdate' ,[$this,'pgetdate_fnc',array('is_safe'=>array('html'))]),
+            new TwigFunction('pnumber' ,[$this,'pnumber_fnc',array('is_safe'=>array('html'))]),
+            new TwigFunction('pletter' ,[$this,'pletter_fnc',array('is_safe'=>array('html'))]),
         );
     }
 
@@ -69,8 +74,14 @@ class PersianToolsExtension extends \Twig_Extension
      * @return string
      */
 
-    public function pdateFilter($timestamp = NULL,$format = 'Y-m-d')
+    public function pdateFilter($timestamp = NULL,$format = 'Y-m-d', $pnumber = true)
     {
+        if(is_a($timestamp, 'DateTime')){
+            $timestamp = $timestamp->getTimestamp();
+        }
+        if($pnumber){
+            return $this->pt->pnumber($this->pt->pdate($format,$timestamp));
+        }
         return $this->pt->pdate($format,$timestamp);
     }
 
@@ -94,6 +105,34 @@ class PersianToolsExtension extends \Twig_Extension
     public function pletterFilter($string)
     {
         return $this->pt->pletter($string);
+    }
+
+    /**
+     * Convert second to duration
+     *
+     * @param $integer
+     * @return mixed
+     */
+    public function pdurationFilter($seconds, $pnumber = true)
+    {
+        if($pnumber){
+            return $this->pt->pnumber($this->pt->pduration($seconds));
+        }
+        return $this->pt->pduration($seconds);
+    }
+
+    /**
+     * Convert second to duration text
+     *
+     * @param $integer
+     * @return mixed
+     */
+    public function pdurationTextFilter($seconds, $pnumber = true)
+    {
+        if($pnumber){
+            return $this->pt->pnumber($this->pt->pdurationText($seconds));
+        }
+        return $this->pt->pdurationText($seconds);
     }
 
     /**

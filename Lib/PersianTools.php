@@ -593,4 +593,32 @@ class PersianTools {
 
         return $sum < 2 && $check == $sum || $sum >= 2 && $check + $sum == 11;
     }
+
+    function pduration($seconds){
+        $hours = floor($seconds/3600);
+        $seconds = $seconds % 3600;
+        $minutes = floor($seconds / 60);
+        $seconds = $seconds % 60;
+        return  sprintf('%02d:%02d:%02d',$hours, $minutes, $seconds);
+    }
+
+    function pdurationText($seconds){
+        $hours = floor($seconds/3600);
+        $seconds = $seconds % 3600;
+        $minutes = floor($seconds / 60);
+        $seconds = $seconds % 60;
+        $text = '';
+        if($hours > 0){
+            $text = "$hours ساعت ";
+        }
+        if($minutes > 0){
+            if(strlen($text) > 0) $text .= 'و';
+            $text .= " $minutes دقیقه";
+        }
+        if($seconds > 0){
+            if(strlen($text) > 0) $text .= 'و';
+            $text .= " $seconds ثانیه";
+        }
+        return $text;
+    }
 }
