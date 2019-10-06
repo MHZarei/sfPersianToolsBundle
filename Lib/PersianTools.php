@@ -613,12 +613,17 @@ class PersianTools {
         }
         if($minutes > 0){
             if(strlen($text) > 0) $text .= 'و';
-            $text .= " $minutes دقیقه";
+            $text .= " $minutes دقیقه ";
         }
         if($seconds > 0){
             if(strlen($text) > 0) $text .= 'و';
             $text .= " $seconds ثانیه";
         }
         return $text;
+    }
+
+    public function pprice($price, $tomanPostfix = true){
+        if($price == 0) return 'رایگان';
+        return number_format($price) . ($tomanPostfix ? ' تومان ' : '');
     }
 }

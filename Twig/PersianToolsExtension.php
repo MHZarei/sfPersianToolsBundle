@@ -47,6 +47,7 @@ class PersianToolsExtension extends AbstractExtension
             new TwigFilter('pletter', [$this, 'pletterFilter']),
             new TwigFilter('pduration', [$this, 'pdurationFilter']),
             new TwigFilter('pdurationText', [$this, 'pdurationTextFilter']),
+            new TwigFilter('pprice', [$this, 'ppriceFilter']),
         );
     }
 
@@ -133,6 +134,20 @@ class PersianToolsExtension extends AbstractExtension
             return $this->pt->pnumber($this->pt->pdurationText($seconds));
         }
         return $this->pt->pdurationText($seconds);
+    }
+
+    /**
+     * Convert price format to toman text
+     *
+     * @param $integer
+     * @return mixed
+     */
+    public function ppriceFilter($price, $pnumber = true)
+    {
+        if($pnumber){
+            return $this->pt->pnumber($this->pt->pprice($price));
+        }
+        return $this->pt->pprice($price);
     }
 
     /**
