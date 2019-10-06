@@ -1,7 +1,7 @@
 {
     "name": "mhzarei/persian-tools-bundle",
     "type": "library",
-    "description": "Persian Tools for Symfony 2",
+    "description": "Persian Tools for Symfony 3",
     "keywords": ["pdate", "persian number", "persian", "tools", "persian tools"],
     "homepage": "http://intuxicated.ir",
     "license": "MIT",
@@ -29,7 +29,7 @@
             "mhzarei\\PersianToolsBundle\\": ""
         }
     },
-    "target-dir": "mhzarei/PersianToolsBundle",
+    "target-dir": "Intuxicated/PersianToolsBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "0.1-dev"
