@@ -428,7 +428,7 @@ class PersianTools {
         }
 
         list($year, $month, $day) = $this->jalali_to_gregorian($year, $month, $day);
-        return mktime($hour, $minute, $second, $month, $day, $year, $is_dst);
+        return mktime($hour, $minute, $second, $month, $day, $year);
     }
 
     function pcheckdate($month, $day, $year)
